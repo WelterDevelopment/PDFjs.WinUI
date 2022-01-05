@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:pdfjs="using:PDFjs.WinUI" 
-    mc:Ignorable="d">
+    mc:Ignorable="d" >
 	<Page   >
 		<Page.Resources>
 			<local:ViewModel x:Name="VM" x:Key="VM"></local:ViewModel>
@@ -16,7 +16,7 @@
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="*" />
 			</Grid.RowDefinitions>
-			<StackPanel Grid.Row="0" Orientation="Horizontal">
+			<StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="4" Padding="4">
 				<ComboBox ItemsSource="{Binding ThemeOptions}" SelectedItem="{Binding Theme, Mode=TwoWay}" SelectionChanged="ComboBox_SelectionChanged"></ComboBox>
 				<Button Content="Open PDF file"  Click="Btn_Open"/>
 				<NumberBox Value="{Binding Page, Mode=TwoWay}"  SpinButtonPlacementMode="Inline" />

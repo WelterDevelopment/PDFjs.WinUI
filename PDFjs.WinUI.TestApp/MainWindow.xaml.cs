@@ -27,6 +27,7 @@ namespace PDFjs.WinUI.TestApp
 		public MainWindow()
 		{
 			this.InitializeComponent();
+			Title = "PDFjs.WinUI.TestApp";
 		}
 
 		private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
