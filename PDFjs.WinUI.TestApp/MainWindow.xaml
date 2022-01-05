@@ -18,8 +18,10 @@
 			</Grid.RowDefinitions>
 			<StackPanel Grid.Row="0" Orientation="Horizontal">
 				<ComboBox ItemsSource="{Binding ThemeOptions}" SelectedItem="{Binding Theme, Mode=TwoWay}" SelectionChanged="ComboBox_SelectionChanged"></ComboBox>
+				<Button Content="Open PDF file"  Click="Btn_Open"/>
+				<NumberBox Value="{Binding Page, Mode=TwoWay}"  SpinButtonPlacementMode="Inline" />
 			</StackPanel>
-			<pdfjs:PDFjsViewer Grid.Row="1" Name="Viewer" Visibility="{Binding IsInternalViewerActive}" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"  RequestedTheme="{Binding RequestedTheme}" Theme="{Binding Theme}" />
+			<pdfjs:PDFjsViewer Grid.Row="1" Name="Viewer" Visibility="{Binding IsInternalViewerActive}" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"  RequestedTheme="{Binding RequestedTheme}" Theme="{Binding Theme}" Page="{Binding Page, Mode=TwoWay}" />
 		</Grid>
 	</Page>
 </Window>

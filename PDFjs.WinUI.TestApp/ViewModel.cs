@@ -25,9 +25,9 @@ namespace PDFjs.WinUI.TestApp
 		public bool IsInternalViewerActive { get => Get(true); set => Set(value); }
 		public string[] ThemeOptions { get => new[] { "Default", "Dark", "Light" }; }
 		public string PDFPath { get => Get("ms-appx:///Assets/Test.pdf"); set => Set(value); }
+		public int Page { get => Get(1); set => Set(value); }
+
 		public bool IsDefaultContextMenuEnabled { get => Get(true); set => Set(value); }
-
-
 		public bool IsDevToolsEnabled { get => Get(true); set => Set(value); }
 
 	}

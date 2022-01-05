@@ -11,6 +11,9 @@
     <UseWinUI>true</UseWinUI>
     <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Assets\prd_thesis.pdf" />
+  </ItemGroup>
 
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -36,5 +39,10 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PDFjs.WinUI\PDFjs.WinUI.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="Assets\prd_thesis.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>

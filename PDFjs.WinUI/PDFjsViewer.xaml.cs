@@ -33,6 +33,18 @@ namespace PDFjs.WinUI
 
 		private new ElementTheme ActualTheme = ElementTheme.Dark;
 
+		public static readonly DependencyProperty PageProperty = DependencyProperty.Register("Page", typeof(int), typeof(PDFjsViewer), new PropertyMetadata(1, (d, e) => ((PDFjsViewer)d).PropertyChanged(d, e, "page")));
+		public int Page
+		{
+			get => (int)GetValue(PageProperty);
+			set => SetValue(PageProperty, value);
+		}
+		private async void PropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e, string name = "")
+		{
+			if (await Get<int>(name) != int.Parse(e.NewValue.ToString()))
+			await Set(name, e.NewValue.ToString());
+		}
+
 		public static readonly DependencyProperty ThemeProperty = DependencyProperty.Register("Theme", typeof(string), typeof(PDFjsViewer), new PropertyMetadata("Dark", (d, e) => ((PDFjsViewer)d).ThemeChanged(d, e)));
 		public string Theme
 		{
@@ -96,6 +108,11 @@ namespace PDFjs.WinUI
 			sender.CoreWebView2.SetVirtualHostNameToFolderMapping("pdfjs", path, CoreWebView2HostResourceAccessKind.DenyCors);
 			sender.CoreWebView2.DOMContentLoaded += (a, b) => { updateTheme(); };
 			sender.CoreWebView2.NavigationCompleted += (a, b) => { Reload(); };
+			sender.CoreWebView2.WebMessageReceived += (a,b) => {
+
+				string message = b.WebMessageAsJson;
+				Page = int.Parse(				message			); 
+			};
 			PDFjsViewerWebView.Source = new("https://pdfjs/web/viewer.html");
 		}
 
@@ -142,25 +159,11 @@ namespace PDFjs.WinUI
 			await PDFjsViewerWebView.EnsureCoreWebView2Async();
 		}
 
-		//public int Page
-		//{
-		//	get
-		//	{
-
-		//	}
-		//}
-
-		//public async int GetValue()
-		//{
-
-		//}
-
-
-		protected async Task<T> GetValue<T>(string name)
+		public async Task<T> Get<T>(string name, string service = "PDFViewerApplication.")
 		{
 			try
 			{
-				string returnstring = await PDFjsViewerWebView.ExecuteScriptAsync("PDFViewerApplication." + name);
+				string returnstring = await PDFjsViewerWebView.ExecuteScriptAsync(service + name);
 				var converter = TypeDescriptor.GetConverter(typeof(T));
 				if (converter != null)
 				{
@@ -175,15 +178,30 @@ namespace PDFjs.WinUI
 			}
 		}
 
-		public Task<int> Page { get => GetValue<int>("page"); }
-		public Task<int> LastPage { get => GetValue<int>("pagesCount"); }
+		public async Task<bool> Set(string name, string value, string service = "PDFViewerApplication.")
+		{
+			try
+			{
+				string returnstring = await PDFjsViewerWebView.ExecuteScriptAsync(service + name + $" = {value}");
+				return true;
+			}
+			catch
+			{
+				return false;
+			}
+		}
 
-		public Task<string> Author { get => GetValue<string>("metadata?.get('dc:creator')"); }
-		public Task<string> Title { get => GetValue<string>("metadata?.get('dc:title')"); }
-		public Task<string> Description { get => GetValue<string>("metadata?.get('dc:description')"); }
-		public Task<string> Keywords { get => GetValue<string>("metadata?.get('pdf:Keywords')"); }
-		public Task<string> Producer { get => GetValue<string>("metadata?.get('pdf:Producer')"); }
-		public Task<string> CreatorTool { get => GetValue<string>("metadata?.get('xmp:CreatorTool')"); }
+		public Task<int> GetPage { get => Get<int>("page"); }
+
+	
+		public Task<int> LastPage { get => Get<int>("pagesCount"); }
+
+		public Task<string> Author { get => Get<string>("metadata?.get('dc:creator')"); }
+		public Task<string> Title { get => Get<string>("metadata?.get('dc:title')"); }
+		public Task<string> Description { get => Get<string>("metadata?.get('dc:description')"); }
+		public Task<string> Keywords { get => Get<string>("metadata?.get('pdf:Keywords')"); }
+		public Task<string> Producer { get => Get<string>("metadata?.get('pdf:Producer')"); }
+		public Task<string> CreatorTool { get => Get<string>("metadata?.get('xmp:CreatorTool')"); }
 
 	}
 }
