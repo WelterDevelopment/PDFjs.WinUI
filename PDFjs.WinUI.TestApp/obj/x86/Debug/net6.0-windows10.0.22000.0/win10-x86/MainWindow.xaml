@@ -19,7 +19,7 @@
 			<StackPanel Grid.Row="0" Orientation="Horizontal">
 				<ComboBox x:ConnectionId='4' ItemsSource="{Binding ThemeOptions}" SelectedItem="{Binding Theme, Mode=TwoWay}"                                             ></ComboBox>
 			</StackPanel>
-			<pdfjs:PDFjsViewer x:ConnectionId='3' Grid.Row="1" Name="Viewer" Visibility="{Binding IsInternalViewerActive}" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"  RequestedTheme="{Binding RequestedTheme}" Theme="{Binding Theme, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+			<pdfjs:PDFjsViewer x:ConnectionId='3' Grid.Row="1" Name="Viewer" Visibility="{Binding IsInternalViewerActive}" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"  RequestedTheme="{Binding RequestedTheme}" Theme="{Binding Theme}" />
 		</Grid>
 	</Page>
 </Window>

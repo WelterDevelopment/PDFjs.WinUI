@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ih+CyvRHwnTp0/f7O8TF0Do36IoiHeI7PFqR8KNkfcp5RtjQSkCaVorIHzNr/ZZLe9aInykurC67yRPggdQH8Q==",
+  "dgSpecHash": "HGMTNKOfK43dXtKYeDeQ5LKTiEgA8YrHC37rfNdM3gflAULhGntFhdoQhMxvCQqjnzHzANJyp/9mStv+k2ImfQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\welte\\source\\repos\\PDFjs.WinUI\\PDFjs.WinUI\\PDFjs.WinUI.csproj",
+  "projectFilePath": "C:\\PDFjs.WinUI\\PDFjs.WinUI\\PDFjs.WinUI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\welte\\.nuget\\packages\\microsoft.windows.sdk.buildtools\\10.0.22000.196\\microsoft.windows.sdk.buildtools.10.0.22000.196.nupkg.sha512",
     "C:\\Users\\welte\\.nuget\\packages\\microsoft.windowsappsdk\\1.0.0\\microsoft.windowsappsdk.1.0.0.nupkg.sha512",

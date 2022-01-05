@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\welte\\source\\repos\\PDFjs.WinUI\\PDFjs.WinUI\\PDFjs.WinUI.csproj": {}
+    "C:\\PDFjs.WinUI\\PDFjs.WinUI\\PDFjs.WinUI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\welte\\source\\repos\\PDFjs.WinUI\\PDFjs.WinUI\\PDFjs.WinUI.csproj": {
+    "C:\\PDFjs.WinUI\\PDFjs.WinUI\\PDFjs.WinUI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\welte\\source\\repos\\PDFjs.WinUI\\PDFjs.WinUI\\PDFjs.WinUI.csproj",
+        "projectUniqueName": "C:\\PDFjs.WinUI\\PDFjs.WinUI\\PDFjs.WinUI.csproj",
         "projectName": "PDFjs.WinUI",
-        "projectPath": "C:\\Users\\welte\\source\\repos\\PDFjs.WinUI\\PDFjs.WinUI\\PDFjs.WinUI.csproj",
+        "projectPath": "C:\\PDFjs.WinUI\\PDFjs.WinUI\\PDFjs.WinUI.csproj",
         "packagesPath": "C:\\Users\\welte\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\welte\\source\\repos\\PDFjs.WinUI\\PDFjs.WinUI\\obj\\",
+        "outputPath": "C:\\PDFjs.WinUI\\PDFjs.WinUI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
