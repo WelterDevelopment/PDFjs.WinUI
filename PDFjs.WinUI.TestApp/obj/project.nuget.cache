@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "dgSpecHash": "6Tb+xrMJ/clIu+1RNJItAnt11n92dyhTz6QTnfW8C3fLJtdahnKHANdC1MW+RSiYZ+hkM5R0qNJOB+sljSeFtQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\welte\\source\\repos\\PDFjs.WinUI\\PDFjs.WinUI.TestApp\\PDFjs.WinUI.TestApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\welte\\.nuget\\packages\\microsoft.windows.sdk.buildtools\\10.0.22000.196\\microsoft.windows.sdk.buildtools.10.0.22000.196.nupkg.sha512",
+    "C:\\Users\\welte\\.nuget\\packages\\microsoft.windowsappsdk\\1.0.0\\microsoft.windowsappsdk.1.0.0.nupkg.sha512",
+    "C:\\Users\\welte\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\6.0.0\\microsoft.netcore.app.runtime.win-x64.6.0.0.nupkg.sha512",
+    "C:\\Users\\welte\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\6.0.0\\microsoft.aspnetcore.app.runtime.win-x64.6.0.0.nupkg.sha512",
+    "C:\\Users\\welte\\.nuget\\packages\\microsoft.netcore.app.runtime.win-arm64\\6.0.0\\microsoft.netcore.app.runtime.win-arm64.6.0.0.nupkg.sha512",
+    "C:\\Users\\welte\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\6.0.0\\microsoft.windowsdesktop.app.runtime.win-x64.6.0.0.nupkg.sha512",
+    "C:\\Users\\welte\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.22000.21\\microsoft.windows.sdk.net.ref.10.0.22000.21.nupkg.sha512",
+    "C:\\Users\\welte\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-arm64\\6.0.0\\microsoft.aspnetcore.app.runtime.win-arm64.6.0.0.nupkg.sha512",
+    "C:\\Users\\welte\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x86\\6.0.0\\microsoft.netcore.app.runtime.win-x86.6.0.0.nupkg.sha512",
+    "C:\\Users\\welte\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-arm64\\6.0.0\\microsoft.windowsdesktop.app.runtime.win-arm64.6.0.0.nupkg.sha512",
+    "C:\\Users\\welte\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x86\\6.0.0\\microsoft.aspnetcore.app.runtime.win-x86.6.0.0.nupkg.sha512",
+    "C:\\Users\\welte\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x86\\6.0.0\\microsoft.windowsdesktop.app.runtime.win-x86.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
