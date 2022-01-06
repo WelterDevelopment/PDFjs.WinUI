@@ -321,7 +321,7 @@
 			exports.AppOptions = AppOptions;
 
 			/***/
-}),
+		}),
 /* 2 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -2561,7 +2561,7 @@
 
 				if (evt.value !== pdfViewer.currentPageNumber.toString() && evt.value !== pdfViewer.currentPageLabel) {
 					PDFViewerApplication.toolbar.setPageNumber(pdfViewer.currentPageNumber, pdfViewer.currentPageLabel);
-					
+
 				}
 			}
 
@@ -2728,6 +2728,11 @@
 				} else {
 					setZoomDisabledTimeout();
 				}
+			}
+
+			function scrollToYOffset(val) {
+				const rect = pdfViewer.container.getBoundingClientRect();
+				pdfViewer.container.scrollTop += 500;
 			}
 
 			function webViewerTouchStart(evt) {
@@ -3067,7 +3072,7 @@
 			exports.PDFPrintServiceFactory = PDFPrintServiceFactory;
 
 			/***/
-}),
+		}),
 /* 3 */
 /***/ ((__unused_webpack_module, exports) => {
 
@@ -3679,7 +3684,7 @@
 			}
 
 			/***/
-}),
+		}),
 /* 4 */
 /***/ ((__unused_webpack_module, exports) => {
 
@@ -3825,7 +3830,7 @@
 			exports.AutomationEventBus = AutomationEventBus;
 
 			/***/
-}),
+		}),
 /* 5 */
 /***/ ((module) => {
 
@@ -3843,7 +3848,7 @@
 			module.exports = pdfjsLib;
 
 			/***/
-}),
+		}),
 /* 6 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -3971,7 +3976,7 @@
 			exports.PDFCursorTools = PDFCursorTools;
 
 			/***/
-}),
+		}),
 /* 7 */
 /***/ ((__unused_webpack_module, exports) => {
 
@@ -4107,7 +4112,7 @@
 			exports.GrabToPan = GrabToPan;
 
 			/***/
-}),
+		}),
 /* 8 */
 /***/ ((__unused_webpack_module, exports) => {
 
@@ -4218,7 +4223,7 @@
 			exports.OverlayManager = OverlayManager;
 
 			/***/
-}),
+		}),
 /* 9 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -4290,7 +4295,7 @@
 			exports.PasswordPrompt = PasswordPrompt;
 
 			/***/
-}),
+		}),
 /* 10 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -4446,7 +4451,7 @@
 			exports.PDFAttachmentViewer = PDFAttachmentViewer;
 
 			/***/
-}),
+		}),
 /* 11 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -4581,7 +4586,7 @@
 			exports.BaseTreeViewer = BaseTreeViewer;
 
 			/***/
-}),
+		}),
 /* 12 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -4854,7 +4859,7 @@
 			exports.PDFDocumentProperties = PDFDocumentProperties;
 
 			/***/
-}),
+		}),
 /* 13 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -5056,7 +5061,7 @@
 			exports.PDFFindBar = PDFFindBar;
 
 			/***/
-}),
+		}),
 /* 14 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -5800,7 +5805,7 @@
 			exports.PDFFindController = PDFFindController;
 
 			/***/
-}),
+		}),
 /* 15 */
 /***/ ((__unused_webpack_module, exports) => {
 
@@ -5896,7 +5901,7 @@
 			}
 
 			/***/
-}),
+		}),
 /* 16 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -6511,7 +6516,7 @@
 			}
 
 			/***/
-}),
+		}),
 /* 17 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -6696,7 +6701,7 @@
 			exports.PDFLayerViewer = PDFLayerViewer;
 
 			/***/
-}),
+		}),
 /* 18 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -7172,7 +7177,7 @@
 			exports.SimpleLinkService = SimpleLinkService;
 
 			/***/
-}),
+		}),
 /* 19 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -7508,7 +7513,7 @@
 			exports.PDFOutlineViewer = PDFOutlineViewer;
 
 			/***/
-}),
+		}),
 /* 20 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -7874,7 +7879,7 @@
 			exports.PDFPresentationMode = PDFPresentationMode;
 
 			/***/
-}),
+		}),
 /* 21 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -8037,7 +8042,7 @@
 			exports.PDFRenderingQueue = PDFRenderingQueue;
 
 			/***/
-}),
+		}),
 /* 22 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -8533,7 +8538,7 @@
 			exports.PDFScriptingManager = PDFScriptingManager;
 
 			/***/
-}),
+		}),
 /* 23 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -8892,7 +8897,7 @@
 			exports.PDFSidebar = PDFSidebar;
 
 			/***/
-}),
+		}),
 /* 24 */
 /***/ ((__unused_webpack_module, exports) => {
 
@@ -9024,7 +9029,7 @@
 			exports.PDFSidebarResizer = PDFSidebarResizer;
 
 			/***/
-}),
+		}),
 /* 25 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -9309,7 +9314,7 @@
 			exports.PDFThumbnailViewer = PDFThumbnailViewer;
 
 			/***/
-}),
+		}),
 /* 26 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -9706,7 +9711,7 @@
 			exports.PDFThumbnailView = PDFThumbnailView;
 
 			/***/
-}),
+		}),
 /* 27 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -9746,7 +9751,7 @@
 			exports.PDFSinglePageViewer = PDFSinglePageViewer;
 
 			/***/
-}),
+		}),
 /* 28 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -9970,7 +9975,7 @@
 					else {
 						//chrome.webview.postMessage(val.toString());
 					}
-					
+
 				}
 
 				_setCurrentPageNumber(val, resetCurrentPageView = false) {
@@ -11492,7 +11497,7 @@
 			exports.BaseViewer = BaseViewer;
 
 			/***/
-}),
+		}),
 /* 29 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -11599,7 +11604,7 @@
 			exports.AnnotationLayerBuilder = AnnotationLayerBuilder;
 
 			/***/
-}),
+		}),
 /* 30 */
 /***/ ((__unused_webpack_module, exports) => {
 
@@ -11728,7 +11733,7 @@
 			exports.NullL10n = NullL10n;
 
 			/***/
-}),
+		}),
 /* 31 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -12526,7 +12531,7 @@
 			exports.PDFPageView = PDFPageView;
 
 			/***/
-}),
+		}),
 /* 32 */
 /***/ ((__unused_webpack_module, exports) => {
 
@@ -12646,7 +12651,7 @@
 			exports.StructTreeLayerBuilder = StructTreeLayerBuilder;
 
 			/***/
-}),
+		}),
 /* 33 */
 /***/ ((__unused_webpack_module, exports) => {
 
@@ -12920,7 +12925,7 @@
 			exports.TextHighlighter = TextHighlighter;
 
 			/***/
-}),
+		}),
 /* 34 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -13083,7 +13088,7 @@
 			exports.TextLayerBuilder = TextLayerBuilder;
 
 			/***/
-}),
+		}),
 /* 35 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -13182,7 +13187,7 @@
 			exports.XfaLayerBuilder = XfaLayerBuilder;
 
 			/***/
-}),
+		}),
 /* 36 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -13507,7 +13512,7 @@
 			exports.SecondaryToolbar = SecondaryToolbar;
 
 			/***/
-}),
+		}),
 /* 37 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -13778,7 +13783,7 @@
 			exports.Toolbar = Toolbar;
 
 			/***/
-}),
+		}),
 /* 38 */
 /***/ ((__unused_webpack_module, exports) => {
 
@@ -13874,7 +13879,7 @@
 			exports.ViewHistory = ViewHistory;
 
 			/***/
-}),
+		}),
 /* 39 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -13936,7 +13941,7 @@
 			_app.PDFViewerApplication.externalServices = GenericExternalServices;
 
 			/***/
-}),
+		}),
 /* 40 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -14070,7 +14075,7 @@
 			exports.BasePreferences = BasePreferences;
 
 			/***/
-}),
+		}),
 /* 41 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -14173,7 +14178,7 @@
 			exports.DownloadManager = DownloadManager;
 
 			/***/
-}),
+		}),
 /* 42 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -14225,7 +14230,7 @@
 			exports.GenericL10n = GenericL10n;
 
 			/***/
-}),
+		}),
 /* 43 */
 /***/ (() => {
 
@@ -15048,7 +15053,7 @@
 			}(window, document);
 
 			/***/
-}),
+		}),
 /* 44 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -15118,7 +15123,7 @@
 			exports.GenericScripting = GenericScripting;
 
 			/***/
-}),
+		}),
 /* 45 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -15418,7 +15423,7 @@
 			};
 
 			/***/
-}),
+		}),
 /* 46 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -15459,7 +15464,7 @@
 			}
 
 			/***/
-})
+		})
 /******/]);
 /************************************************************************/
 /******/ 	// The module cache
@@ -15472,14 +15477,14 @@
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 			/******/
-}
+		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
 /******/ 			// no module.id needed
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 			/******/
-};
+		};
 /******/
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
@@ -15487,7 +15492,7 @@
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 		/******/
-}
+	}
 	/******/
 	/************************************************************************/
 	var __webpack_exports__ = {};

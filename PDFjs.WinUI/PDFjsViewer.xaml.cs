@@ -42,7 +42,7 @@ namespace PDFjs.WinUI
 		private async void PropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e, string name = "")
 		{
 			if (await Get<int>(name) != int.Parse(e.NewValue.ToString()))
-			await Set(name, e.NewValue.ToString());
+				await Set(name, e.NewValue.ToString());
 		}
 
 		public static readonly DependencyProperty ThemeProperty = DependencyProperty.Register("Theme", typeof(string), typeof(PDFjsViewer), new PropertyMetadata("Dark", (d, e) => ((PDFjsViewer)d).ThemeChanged(d, e)));
@@ -108,10 +108,11 @@ namespace PDFjs.WinUI
 			sender.CoreWebView2.SetVirtualHostNameToFolderMapping("pdfjs", path, CoreWebView2HostResourceAccessKind.DenyCors);
 			sender.CoreWebView2.DOMContentLoaded += (a, b) => { updateTheme(); };
 			sender.CoreWebView2.NavigationCompleted += (a, b) => { Reload(); };
-			sender.CoreWebView2.WebMessageReceived += (a,b) => {
+			sender.CoreWebView2.WebMessageReceived += (a, b) =>
+			{
 
 				string message = b.WebMessageAsJson;
-				Page = int.Parse(				message			); 
+				Page = int.Parse(message);
 			};
 			PDFjsViewerWebView.Source = new("https://pdfjs/web/viewer.html");
 		}
@@ -168,7 +169,7 @@ namespace PDFjs.WinUI
 				if (converter != null)
 				{
 					// Cast ConvertFromString(string text) : object to (T)
-					return (T)converter.ConvertFromString(returnstring);
+					return (T)converter.ConvertFromString(null, System.Globalization.CultureInfo.InvariantCulture, returnstring);
 				}
 				return default(T);
 			}
@@ -193,8 +194,9 @@ namespace PDFjs.WinUI
 
 		public Task<int> GetPage { get => Get<int>("page"); }
 
-	
+
 		public Task<int> LastPage { get => Get<int>("pagesCount"); }
+		public Task<double> CurrentScale { get => Get<double>("pdfViewer.currentScale"); }
 
 		public Task<string> Author { get => Get<string>("metadata?.get('dc:creator')"); }
 		public Task<string> Title { get => Get<string>("metadata?.get('dc:title')"); }
@@ -202,6 +204,19 @@ namespace PDFjs.WinUI
 		public Task<string> Keywords { get => Get<string>("metadata?.get('pdf:Keywords')"); }
 		public Task<string> Producer { get => Get<string>("metadata?.get('pdf:Producer')"); }
 		public Task<string> CreatorTool { get => Get<string>("metadata?.get('xmp:CreatorTool')"); }
+
+		public async Task<bool> ScrollToPosition(int page, double yoffset, double depth = 0)
+		{
+			await Set("page", page.ToString());
+			await PDFjsViewerWebView.ExecuteScriptAsync($"BaseViewer._resetCurrentPageView();");
+
+			double scale = await CurrentScale;
+			double offset = (yoffset- depth) * scale * 1.48;
+			await PDFjsViewerWebView.ExecuteScriptAsync($"PDFViewerApplication.pdfViewer.container.scrollTop += {offset:0.000}");
+			//	await PDFjsViewerWebView.ExecuteScriptAsync($"scrollToYOffset({yoffset:0.000});");
+
+			return true;
+		}
 
 	}
 }
