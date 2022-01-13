@@ -656,8 +656,8 @@
 
 :root {
 	--pdfViewer-padding-bottom: 0;
-	--page-margin: 2px auto 2px;
-	--page-border: 6px solid transparent;
+	--page-margin: 0px Auto 0px; 
+	--page-border: 4px solid transparent;
 	--spreadHorizontalWrapped-margin-LR: -3.5px;
 	--zoom-factor: 1;
 	--viewport-scale-factor: 1;
@@ -966,7 +966,7 @@ html {
 	width: 100%;
 	/* Font size is needed to make the activity bar the correct size. */
 	font-size: 10px;
-	background-color:transparent;
+	background-color: transparent;
 }
 
 body {
@@ -2017,8 +2017,8 @@ html[dir="rtl"] #currentOutlineItem.toolbarButton::before {
 	position: absolute;
 	display: inline-block;
 	top: 1px;*/
-	/* Create a filled circle, with a diameter of 9 pixels, using only CSS: */
-	/*content: "";
+/* Create a filled circle, with a diameter of 9 pixels, using only CSS: */
+/*content: "";
 	background-color: rgba(112, 219, 85, 1);
 	height: 9px;
 	width: 9px;
@@ -2761,6 +2761,16 @@ html[dir="rtl"] #documentPropertiesOverlay .row > * {
 		margin: 0;
 	}
 
+	@keyframes slideInFromLeft {
+		0% {
+			transform: translateX(-100%);
+		}
+
+		100% {
+			transform: translateX(0);
+		}
+	}
+
 	.page {
 		float: left;
 		display: none;
@@ -2768,6 +2778,14 @@ html[dir="rtl"] #documentPropertiesOverlay .row > * {
 		box-shadow: none;
 		background-clip: content-box;
 		background-color: rgba(255, 255, 255, 1);
+		-moz-transition: all 1s ease-in;
+		/* WebKit */
+		-webkit-transition: all 1s ease-in;
+		/* Opera */
+		-o-transition: all 1s ease-in;
+		/* Standard */
+		transition: all 1s ease-in;
+		animation: 1s ease-in-out 1s 1 slideInFromLeft;
 	}
 
 		.page[data-loaded] {

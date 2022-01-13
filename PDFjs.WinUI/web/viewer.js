@@ -1961,6 +1961,7 @@
 						passive: false
 					});
 					window.addEventListener("click", webViewerClick);
+					window.addEventListener("dblclick", viewerDblClick);
 					window.addEventListener("keydown", webViewerKeyDown);
 					window.addEventListener("resize", _boundEvents.windowResize);
 					window.addEventListener("hashchange", _boundEvents.windowHashChange);
@@ -2753,6 +2754,18 @@
 				}
 			}
 
+	function viewerDblClick(evt) {
+		//const appConfig = PDFViewerApplication.appConfig;
+
+		//if (PDFViewerApplication.pdfViewer.containsElement(evt.target) || appConfig.toolbar.container.contains(evt.target) && evt.target !== appConfig.secondaryToolbar.toggleButton) {
+		//	PDFViewerApplication.secondaryToolbar.close();
+		//}
+		//var evttarget = evt.target || evt.srcElement;
+		//var evttext = target.textContent || target.innerText;
+
+		chrome.webview.postMessage({ top : parseFloat(evt.target.style.top)});
+			}
+
 			function webViewerKeyDown(evt) {
 				if (PDFViewerApplication.overlayManager.active) {
 					return;
@@ -3116,7 +3129,7 @@
 			exports.UNKNOWN_SCALE = UNKNOWN_SCALE;
 			const MAX_AUTO_SCALE = 1.25;
 			exports.MAX_AUTO_SCALE = MAX_AUTO_SCALE;
-			const SCROLLBAR_PADDING = 40;
+			const SCROLLBAR_PADDING = 11;
 			exports.SCROLLBAR_PADDING = SCROLLBAR_PADDING;
 			const VERTICAL_PADDING = 5;
 			exports.VERTICAL_PADDING = VERTICAL_PADDING;
@@ -15690,7 +15703,7 @@ window.openPdfAsBase64 = function (base64) {
 		bytes[i] = binary_string.charCodeAt(i);
 	}
 	PDFViewerApplication.open(bytes);
-	PDFViewerApplication.currentScaleValue = "page-fit";
+	PDFViewerApplication.currentScaleValue = "page-width";
 	PDFViewerApplication.update();
 };
 

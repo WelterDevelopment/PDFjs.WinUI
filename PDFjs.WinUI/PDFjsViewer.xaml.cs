@@ -7,9 +7,11 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.Web.WebView2.Core;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -30,6 +32,8 @@ namespace PDFjs.WinUI
 
 		public StorageFile File;
 		public event ErrorEventHandler ErrorOccured;
+
+		public event EventHandler<double> SyncTeXRequested;
 
 		private new ElementTheme ActualTheme = ElementTheme.Dark;
 
@@ -94,8 +98,8 @@ namespace PDFjs.WinUI
 
 		private async void PDFjsViewerWebView_CoreWebView2Initialized(WebView2 sender, CoreWebView2InitializedEventArgs args)
 		{
-			sender.CoreWebView2.Settings.AreDevToolsEnabled = true;
-			sender.CoreWebView2.Settings.AreDefaultContextMenusEnabled = true;
+			sender.CoreWebView2.Settings.AreDevToolsEnabled = false;
+			sender.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
 
 			sender.CoreWebView2.Settings.AreHostObjectsAllowed = true;
 			sender.CoreWebView2.Settings.IsScriptEnabled = true;
@@ -108,13 +112,25 @@ namespace PDFjs.WinUI
 			sender.CoreWebView2.SetVirtualHostNameToFolderMapping("pdfjs", path, CoreWebView2HostResourceAccessKind.DenyCors);
 			sender.CoreWebView2.DOMContentLoaded += (a, b) => { updateTheme(); };
 			sender.CoreWebView2.NavigationCompleted += (a, b) => { Reload(); };
-			sender.CoreWebView2.WebMessageReceived += (a, b) =>
-			{
-
-				string message = b.WebMessageAsJson;
-				Page = int.Parse(message);
-			};
+			sender.CoreWebView2.WebMessageReceived += CoreWebView2_WebMessageReceived;
 			PDFjsViewerWebView.Source = new("https://pdfjs/web/viewer.html");
+		}
+
+		private void CoreWebView2_WebMessageReceived(CoreWebView2 sender, CoreWebView2WebMessageReceivedEventArgs args)
+		{
+			string message = args.WebMessageAsJson;
+
+			if (int.TryParse(message, out int page))
+				Page = page;
+			else
+			{
+				JObject obj = JObject.Parse(message);
+				string top = (string)obj["top"];
+				if(double.TryParse(top, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out double t))
+				{
+					SyncTeXRequested?.Invoke(this, t);
+				}
+			}
 		}
 
 		private async void updateTheme()
@@ -211,7 +227,7 @@ namespace PDFjs.WinUI
 			await PDFjsViewerWebView.ExecuteScriptAsync($"BaseViewer._resetCurrentPageView();");
 
 			double scale = await CurrentScale;
-			double offset = (yoffset- depth) * scale * 1.48;
+			double offset = (yoffset - depth-10) * scale * 2.03 ;
 			await PDFjsViewerWebView.ExecuteScriptAsync($"PDFViewerApplication.pdfViewer.container.scrollTop += {offset:0.000}");
 			//	await PDFjsViewerWebView.ExecuteScriptAsync($"scrollToYOffset({yoffset:0.000});");
 
