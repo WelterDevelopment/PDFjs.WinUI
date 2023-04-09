@@ -46,6 +46,7 @@ namespace PDFjs.WinUI
 		public PDFjsViewer()
 		{
 			this.InitializeComponent();
+			Environment.SetEnvironmentVariable("WEBVIEW2_DEFAULT_BACKGROUND_COLOR", "0");
 		}
 
 		private void ThemeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
