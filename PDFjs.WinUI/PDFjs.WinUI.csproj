@@ -6,6 +6,30 @@
     <UseWinUI>true</UseWinUI>
     <Platforms>x86;x64;ARM64</Platforms>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <WarningLevel>3</WarningLevel>
+    <NoWarn>CS1998;CS4014</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <WarningLevel>3</WarningLevel>
+    <NoWarn>CS1998;CS4014</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <WarningLevel>3</WarningLevel>
+    <NoWarn>CS1998;CS4014</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <WarningLevel>3</WarningLevel>
+    <NoWarn>CS1998;CS4014</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">
+    <WarningLevel>3</WarningLevel>
+    <NoWarn>CS1998;CS4014</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <WarningLevel>3</WarningLevel>
+    <NoWarn>CS1998;CS4014</NoWarn>
+  </PropertyGroup>
   <ItemGroup>
     <Content Include="build\pdf.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
