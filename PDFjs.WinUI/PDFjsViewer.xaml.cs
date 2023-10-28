@@ -19,6 +19,7 @@ namespace PDFjs.WinUI
 
 		public StorageFile File;
 		public event ErrorEventHandler ErrorOccured;
+		private bool loaded = false;
 
 		public event EventHandler<double> SyncTeXRequested;
 
@@ -102,6 +103,7 @@ namespace PDFjs.WinUI
 			sender.CoreWebView2.NavigationCompleted += (a, b) => { Reload(); };
 			sender.CoreWebView2.WebMessageReceived += CoreWebView2_WebMessageReceived;
 			PDFjsViewerWebView.Source = new("https://pdfjs/web/viewer.html");
+			loaded = true;
 		}
 
 		private void CoreWebView2_WebMessageReceived(CoreWebView2 sender, CoreWebView2WebMessageReceivedEventArgs args)
@@ -137,13 +139,18 @@ namespace PDFjs.WinUI
 		{
 			try
 			{
-				File = pdffile;
-				Stream stream = await pdffile.OpenStreamForReadAsync();
-				byte[] buffer = new byte[stream.Length];
-				stream.Read(buffer, 0, (int)stream.Length);
-				var asBase64 = Convert.ToBase64String(buffer);
-				await PDFjsViewerWebView.ExecuteScriptAsync("window.openPdfAsBase64('" + asBase64 + "')");
-				return true;
+				while (!loaded)
+				{
+					await Task.Delay(50);
+				}
+					File = pdffile;
+					Stream stream = await pdffile.OpenStreamForReadAsync();
+					byte[] buffer = new byte[stream.Length];
+					stream.Read(buffer, 0, (int)stream.Length);
+					var asBase64 = Convert.ToBase64String(buffer);
+					await PDFjsViewerWebView.ExecuteScriptAsync("window.openPdfAsBase64('" + asBase64 + "')");
+					return true;
+				
 			}
 			catch (Exception ex)
 			{
