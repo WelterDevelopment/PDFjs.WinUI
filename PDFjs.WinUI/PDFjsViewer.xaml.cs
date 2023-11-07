@@ -20,6 +20,7 @@ namespace PDFjs.WinUI
 		public StorageFile File;
 		public event ErrorEventHandler ErrorOccured;
 		private bool loaded = false;
+		private bool changing = false;
 
 		public event EventHandler<double> SyncTeXRequested;
 
@@ -33,8 +34,9 @@ namespace PDFjs.WinUI
 		}
 		private async void PropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e, string name = "")
 		{
-			if (await Get<int>(name) != int.Parse(e.NewValue.ToString()))
-				await Set(name, e.NewValue.ToString());
+			if (!changing)
+				if (await Get<int>(name) != int.Parse(e.NewValue.ToString()))
+					await Set(name, e.NewValue.ToString());
 		}
 
 		public static readonly DependencyProperty ThemeProperty = DependencyProperty.Register("Theme", typeof(string), typeof(PDFjsViewer), new PropertyMetadata("Dark", (d, e) => ((PDFjsViewer)d).ThemeChanged(d, e)));
@@ -111,12 +113,16 @@ namespace PDFjs.WinUI
 			string message = args.WebMessageAsJson;
 
 			if (int.TryParse(message, out int page))
+			{
+				changing = true;
 				Page = page;
+				changing = false;
+			}
 			else
 			{
 				JObject obj = JObject.Parse(message);
 				string top = (string)obj["top"];
-				if(double.TryParse(top, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out double t))
+				if (double.TryParse(top, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out double t))
 				{
 					SyncTeXRequested?.Invoke(this, t);
 				}
@@ -143,14 +149,14 @@ namespace PDFjs.WinUI
 				{
 					await Task.Delay(50);
 				}
-					File = pdffile;
-					Stream stream = await pdffile.OpenStreamForReadAsync();
-					byte[] buffer = new byte[stream.Length];
-					stream.Read(buffer, 0, (int)stream.Length);
-					var asBase64 = Convert.ToBase64String(buffer);
-					await PDFjsViewerWebView.ExecuteScriptAsync("window.openPdfAsBase64('" + asBase64 + "')");
-					return true;
-				
+				File = pdffile;
+				Stream stream = await pdffile.OpenStreamForReadAsync();
+				byte[] buffer = new byte[stream.Length];
+				stream.Read(buffer, 0, (int)stream.Length);
+				var asBase64 = Convert.ToBase64String(buffer);
+				await PDFjsViewerWebView.ExecuteScriptAsync("window.openPdfAsBase64('" + asBase64 + "')");
+				return true;
+
 			}
 			catch (Exception ex)
 			{
@@ -177,12 +183,8 @@ namespace PDFjs.WinUI
 			{
 				string returnstring = await PDFjsViewerWebView.ExecuteScriptAsync(service + name);
 				var converter = TypeDescriptor.GetConverter(typeof(T));
-				if (converter != null)
-				{
-					// Cast ConvertFromString(string text) : object to (T)
-					return (T)converter.ConvertFromString(null, System.Globalization.CultureInfo.InvariantCulture, returnstring);
-				}
-				return default(T);
+				
+				return (T)converter?.ConvertFromString(null, CultureInfo.InvariantCulture, returnstring) ?? default(T);
 			}
 			catch
 			{
@@ -194,7 +196,7 @@ namespace PDFjs.WinUI
 		{
 			try
 			{
-				string returnstring = await PDFjsViewerWebView.ExecuteScriptAsync(service + name + $" = {value}");
+				string returnstring = await PDFjsViewerWebView.ExecuteScriptAsync(service + name + $" = {value ?? string.Empty}");
 				return true;
 			}
 			catch
@@ -222,12 +224,26 @@ namespace PDFjs.WinUI
 			await PDFjsViewerWebView.ExecuteScriptAsync($"BaseViewer._resetCurrentPageView();");
 
 			double scale = await CurrentScale;
-			double offset = (yoffset - depth-10) * scale * 2.03 ;
+			double offset = (yoffset - depth - 10) * scale * 2.03;
 			await PDFjsViewerWebView.ExecuteScriptAsync($"PDFViewerApplication.pdfViewer.container.scrollTop += {offset:0.000}");
 			//	await PDFjsViewerWebView.ExecuteScriptAsync($"scrollToYOffset({yoffset:0.000});");
 
 			return true;
 		}
 
+		private int currentSpreadMode = 0;
+
+		private async void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
+		{
+			if (loaded)
+			{
+				int spreadmode = e.NewSize.Width < 1000 ? 0 : 1;
+				if (spreadmode != currentSpreadMode)
+				{
+					await PDFjsViewerWebView.ExecuteScriptAsync($"PDFViewerApplication.pdfViewer.spreadMode = {spreadmode};");
+					currentSpreadMode = spreadmode;
+				}
+			}
+		}
 	}
 }

@@ -1713,9 +1713,9 @@
 							this.pdfViewer.scrollMode = scroll;
 						}
 
-						//if ((0, _ui_utils.isValidSpreadMode)(spread)) {
-						//  this.pdfViewer.spreadMode = spread;
-						//}
+						if ((0, _ui_utils.isValidSpreadMode)(spread)) {
+						  this.pdfViewer.spreadMode = spread;
+						}
 					};
 
 					this.isInitialViewSet = true;
